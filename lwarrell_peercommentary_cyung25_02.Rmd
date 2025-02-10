@@ -1,0 +1,42 @@
+title: "lwarrell_peercommentary_cyung25_02"
+author: "Lindsay Warrell"
+date: "`r Sys.Date()`"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    toc: true
+    toc_depth: 2
+    highlight: github
+---
+```{r}
+knitr::include_graphics("CNPRCtitimonkeys©K.West-CNPRC003.jpg")
+# Created within the r chunk. Saved the monkey image into the same R project folder as the markdown document. 
+```
+Lindsay: all of my peer comments will begin with "Lindsay" so that they're easy to find!
+## Every Saturday morning, at the same time, a primatologist goes and sits in the forest to listen for titi monkey calls, counting the number of calls they hear in a 2 hour window from 5am to 7am. Based on previous knowledge, she believes that the mean number of calls she will hear in that time is exactly 15. Let X represent the appropriate Poisson random variable of the number of calls heard in each monitoring session.
+##Poisson distrubition is P(X=k)= ((e^-lambda*)(lambda^k))/k!
+## lambda=15, which is mean. X= number of calls, k= number of occurences
+## Set Lambda
+```{r}
+lambda <- 15
+# Probablity of more than 8 calls (x >8)
+p_more_than_8 <- 1 - ppois(8, lambda= 15)
+# No calls x=0
+p_0_calls <- dpois(0, lambda = 15)
+# Probablity of 3 calls
+p_3_calls <- dpois(3, lambda = 15)
+# Plot mass function Poisson over values 0-30. But first lets set x value range and establish that we are using Poisson distribution. After that we will plot our barplot function. 
+x <- 0:30
+poisson_probs <- dpois(x, lambda = 15)
+barplot(poisson_probs, names.arg = x, space = 0, xlab = "x", ylab = "Pr (X = x)", main = "Poisson Probability Mass Function (lambda = 15)")
+#Lindsay: I mean yeah this is more or less what I did for this section. I really liked your commentary on these topics in particular! Also, this reminded me to add titles to my own graph because I forgot to do that.
+```
+## Simulate 104 results (2 years of Saturday monitoring sessions)
+```{r}
+set.seed (1) #sets up population
+x <- 104
+simu <- rpois (104, lambda = 15) #account for 104 random trials, using rpois command. putting this entire equation as a simulation ensures less syntax errors. 
+hist (simu, xlim = c(0,30)) #histogram accounts for all random trials, limits of x are also set. 
+#Lindsay: This was also more or less what I did. I feel like the code was pretty straightforward overall. Again, good job commentating!
+```
+Lindsay: I think this was overall super well done and also similar to my code. The only main differences were that I didn't set a lot of things equal to each other (for example, when the word lambda was set to 15). You could technically removed that if you wanted to but I don't think it's 100% necessary. I know for me personally it's been a hot second since I've taken a Stats class so I forgot about the Poisson distribution and I struggled with figuring out what that was. But I think overall this was a straightforward homework and I think you did well with it!
