@@ -1,0 +1,54 @@
+---
+title: "cyung25_FinalHomeworkCode_02"
+author: "Charles Yung"
+date: "`r Sys.Date()`"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    toc: true
+    toc_depth: 2
+    highlight: github
+---
+```{r}
+knitr::include_graphics("CNPRCtitimonkeys©K.West-CNPRC003.jpg")
+# Created within the r chunk. Saved the monkey image into the same R project folder as the markdown document. 
+```
+## Every Saturday morning, at the same time, a primatologist goes and sits in the forest to listen for titi monkey calls, counting the number of calls they hear in a 2 hour window from 5am to 7am. Based on previous knowledge, she believes that the mean number of calls she will hear in that time is exactly 15. Let X represent the appropriate Poisson random variable of the number of calls heard in each monitoring session.
+##Poisson distrubition is P(X=k)= ((e^-lambda*)(lambda^k))/k!
+## lambda=15, which is mean. X= number of calls, k= number of occurences
+## Set Lambda
+```{r}
+lambda <- 15
+# Probablity of more than 8 calls (x >8)
+p_more_than_8 <- ppois(8, lambda= 15, lower.tail = FALSE)
+# No calls x=0
+p_0_calls <- dpois(0, lambda = 15)
+# Probablity of 3 calls
+p_3_calls <- dpois(3, lambda = 15)
+# Plot mass function Poisson over values 0-30. But first lets set x value range and establish that we are using Poisson distribution. After that we will plot our barplot function. 
+x <- 0:30
+poisson_probset <- dpois(x, lambda = 15)
+barplot(poisson_probset, names.arg = x, space = 0, xlab = "x", ylab = "Pr (X = x)", main = "Poisson Probability Mass Function (lambda = 15)")
+```
+## Simulate 104 results (2 years of Saturday monitoring sessions)
+```{r}
+set.seed (1) #sets up population
+x <- 104
+simu <- rpois (x, lambda = 15) 
+#account for 104 random trials, using rpois command. putting this entire equation as a simulation ensures less syntax errors. We keep lambda the same here. I set my variable as simu to prevent syntax errors
+hist (simu, breaks = 30, xlim = c(0,30), probability = TRUE, main = "Histogram of Simulated Data", xlab = "Number of Titi Calls", ylab = "probability") #histogram accounts for all random trials, limits of x are also set. Coming back around to edit the code I added axis titles to make the graph look nicer
+```
+## The histogram generally is the same shape as the above poisson probability mass function. This makes sense because the histogram I just plotted is potentially the same probability of monkey calls, just at a broader timeframe. 
+
+## 5 Challenges
+
+## Challenge 1: When I was making my git repo I straight up lost my original R markdown file somewhere in the computer so I ended up having to resort to manually uploading my files to the repository. I'm currently figuring out how to troubleshoot this. Edit 2/10 I wasn't able to figure it out, but my peer was still able to review my stuff so at the very least that turned out okay. 
+
+## Challenge 2: I at first tried to load the monkey image as a web URL but after multiple attempts that didn't work so I resorted to using the knit function instead since that's a lot more closer to what we're used to. The trick was to make sure I knew the name of the image file which was a lot more direct. 
+
+## Challenge 3: When coding for the simulation of 104 occurences it took me a while to get the commands to work until I put the random occurrences as one variable. I kept getting syntax errors beforehand and this was the simplest solution.
+
+
+## Challenge 4: I still wasn't able to completely understand the feature of the "breaks" command and I didn't really know what exactly to set my value to. I think it has something to do with the graph scaling though, but I'll figure it out.
+
+## Challenge 5: I am currently trying to push my final homework file back to github and it's still taking forever! I am going to try one more to to push it following Module 3 but if that doesn't work... I'll add it manually and come to office hours later.  
